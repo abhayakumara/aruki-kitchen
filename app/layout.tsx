@@ -3,6 +3,7 @@ import { Fraunces, Hanken_Grotesk, Noto_Sans_Kannada } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
 
 // Display — Fraunces: warm, characterful soft-serif (used with restraint)
 const display = Fraunces({
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body
         className={`${display.variable} ${body.variable} ${kannada.variable} font-body antialiased`}
       >
+        <ScrollProgress />
         <Navbar />
         <main>{children}</main>
         <Footer />

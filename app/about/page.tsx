@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
+import SmartImage from "@/components/SmartImage";
+import TiltCard from "@/components/TiltCard";
 import { Award, Users, Coffee } from "lucide-react";
 
 const milestones = [
@@ -61,22 +62,28 @@ export default function AboutPage() {
       <section className="py-24 px-6" style={{ background: "var(--palm)" }}>
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
-            <div className="relative">
+            <div className="relative" style={{ perspective: 1200 }}>
               <div className="absolute -top-4 -left-4 w-full h-full rounded-3xl" style={{ background: "rgba(110,20,35,0.12)" }} />
-              <div className="relative rounded-3xl overflow-hidden h-[480px]" style={{ boxShadow: "0 30px 60px -30px rgba(33,10,14,0.5)" }}>
-                <Image
-                  src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=85"
-                  alt="Crispy dosa fresh off the tawa at Aruki Kitchen"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-36 h-36 rounded-2xl overflow-hidden border-4" style={{ borderColor: "var(--palm)" }}>
-                <Image
-                  src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=300&q=80"
+              <TiltCard intensity={6}>
+                <div className="relative rounded-3xl overflow-hidden h-[480px]" style={{ boxShadow: "0 30px 60px -30px rgba(33,10,14,0.5)" }}>
+                  <SmartImage
+                    src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=85&auto=format&fit=crop"
+                    alt="Crispy dosa fresh off the tawa at Aruki Kitchen"
+                    emoji="🥞"
+                    category="Dosa"
+                    sizes="(max-width:1024px) 100vw, 50vw"
+                    className="absolute inset-0"
+                  />
+                </div>
+              </TiltCard>
+              <div className="absolute -bottom-6 -right-6 w-36 h-36 rounded-2xl overflow-hidden border-4 z-10" style={{ borderColor: "var(--palm)" }}>
+                <SmartImage
+                  src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=300&q=80&auto=format&fit=crop"
                   alt="Aruki Kitchen filter coffee"
-                  fill
-                  className="object-cover"
+                  emoji="☕"
+                  category="Beverages"
+                  sizes="144px"
+                  className="absolute inset-0"
                 />
               </div>
             </div>
