@@ -70,7 +70,7 @@ export default function Carousel3D({ items }: { items: MenuItem[] }) {
     >
       <div
         className="carousel3d-stage relative mx-auto"
-        style={{ perspective: "1400px", height: "clamp(300px, 46vw, 460px)", maxWidth: 980 }}
+        style={{ perspective: "1600px", height: "clamp(300px, 46vw, 460px)", maxWidth: 980 }}
         onPointerDown={(e) => (dragStart.current = e.clientX)}
         onPointerUp={(e) => {
           if (dragStart.current == null) return;
@@ -126,8 +126,8 @@ export default function Carousel3D({ items }: { items: MenuItem[] }) {
         </motion.div>
       </div>
 
-      {/* Caption + controls */}
-      <div className="flex items-center justify-center gap-5 mt-2">
+      {/* Caption + controls — sits clear below the magnified front card */}
+      <div className="relative z-10 flex items-center justify-center gap-5 mt-12 sm:mt-14">
         <button onClick={() => go(-1)} className="ring-btn" aria-label="Previous dish"><ChevronLeft size={20} /></button>
         <div className="text-center min-w-[150px]">
           <p className="font-display text-xl" style={{ color: "var(--cream)" }}>{active.name}</p>
