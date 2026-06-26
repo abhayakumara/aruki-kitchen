@@ -2,14 +2,22 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import TiltCard from "@/components/TiltCard";
+import SmartImage from "@/components/SmartImage";
+import HeroPlate from "@/components/HeroPlate";
+import Carousel3D from "@/components/Carousel3D";
+import Magnetic from "@/components/Magnetic";
 import { Leaf, Coffee, Heart, Star, ArrowRight, Phone } from "lucide-react";
 import { menuItems } from "@/data/menu";
 import { site } from "@/data/site";
 
 const featured = menuItems.filter((m) => m.popular).slice(0, 4);
+// A visually diverse ring for the 3D carousel — one dish per vibe.
+const signatureIds = [1, 3, 8, 14, 20, 26, 28, 31];
+const signature = signatureIds
+  .map((id) => menuItems.find((m) => m.id === id))
+  .filter((m): m is (typeof menuItems)[number] => Boolean(m));
 const ticker = ["Masala Dosey", "Ghee Pudi Thatte Idly", "Bisi Bele Bhath", "Filter Coffee", "Mysore Masala Dosey", "Kesari Bhath", "Rava Idly", "Mangalore Buns", "Khara Bhath", "Vade"];
 
 const pillars = [
@@ -104,12 +112,16 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-9 flex flex-wrap gap-4"
             >
-              <Link href="/menu" className="btn-brass">
-                Explore the Menu <ArrowRight size={18} />
-              </Link>
-              <a href={site.phoneHref} className="btn-ghost">
-                <Phone size={17} /> {site.phoneDisplay}
-              </a>
+              <Magnetic>
+                <Link href="/menu" className="btn-brass">
+                  Explore the Menu <ArrowRight size={18} />
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <a href={site.phoneHref} className="btn-ghost">
+                  <Phone size={17} /> {site.phoneDisplay}
+                </a>
+              </Magnetic>
             </motion.div>
 
             {/* trust row */}
@@ -126,61 +138,13 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right — rotating brass tumbler plate */}
+          {/* Right — interactive 3D plate scene */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-            className="relative mx-auto w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[460px] lg:h-[460px]"
           >
-            {/* outer dashed brass ring */}
-            <div
-              className="ring-spin absolute inset-0 rounded-full"
-              style={{ border: "1.5px dashed rgba(224,168,46,0.45)" }}
-            />
-            <div
-              className="ring-spin-rev absolute inset-[26px] rounded-full"
-              style={{ border: "1px solid rgba(242,216,154,0.25)" }}
-            />
-            {/* plate */}
-            <div
-              className="absolute inset-[44px] rounded-full overflow-hidden"
-              style={{ boxShadow: "0 40px 80px -20px rgba(0,0,0,0.7), inset 0 0 0 6px rgba(224,168,46,0.35)" }}
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=900&q=85"
-                alt="Crispy masala dosa served at Aruki Kitchen"
-                fill
-                priority
-                className="object-cover"
-              />
-              {/* steam */}
-              <div className="steam left-[38%]" />
-              <div className="steam left-[55%]" style={{ animationDelay: "1.3s" }} />
-              <div className="steam left-[47%]" style={{ animationDelay: "2.4s" }} />
-            </div>
-
-            {/* floating price chip */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
-              className="absolute -left-4 bottom-12 px-4 py-3 rounded-2xl card-glass"
-            >
-              <p className="text-xs" style={{ color: "rgba(248,241,227,0.6)" }}>Ghee Masala Dosey</p>
-              <p className="font-display text-2xl" style={{ color: "var(--brass)" }}>₹90</p>
-            </motion.div>
-            {/* floating coffee chip */}
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 0.6 }}
-              className="absolute -right-2 top-10 px-4 py-3 rounded-2xl card-glass flex items-center gap-2"
-            >
-              <Coffee size={18} style={{ color: "var(--brass)" }} />
-              <div>
-                <p className="text-xs" style={{ color: "rgba(248,241,227,0.6)" }}>Filter Coffee</p>
-                <p className="font-display text-lg" style={{ color: "var(--cream)" }}>₹25</p>
-              </div>
-            </motion.div>
+            <HeroPlate />
           </motion.div>
         </div>
       </section>
@@ -196,6 +160,26 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* ════════ 3D SIGNATURE CAROUSEL ════════ */}
+      <section className="relative py-24 px-6 overflow-hidden grain" style={{ background: "var(--ink)" }}>
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[760px] h-[760px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(224,168,46,0.12), transparent 65%)" }}
+        />
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <AnimatedSection className="text-center mb-14">
+            <p className="eyebrow mb-3">Spin the Thali</p>
+            <h2 className="section-heading font-display" style={{ color: "var(--cream)" }}>
+              Our <span className="ital">signature</span> plates, in the round
+            </h2>
+            <p className="mt-3 text-sm" style={{ color: "rgba(248,241,227,0.55)" }}>
+              A little carousel of the dishes regulars never skip.
+            </p>
+          </AnimatedSection>
+          <Carousel3D items={signature} />
+        </div>
+      </section>
 
       {/* ════════ FEATURED — 3D tilt cards ════════ */}
       <section className="py-24 px-6" style={{ background: "var(--palm)" }}>
@@ -225,13 +209,16 @@ export default function Home() {
                     style={{ boxShadow: "0 24px 50px -24px rgba(33,10,14,0.35)" }}
                   >
                     <div className="relative h-56 overflow-hidden">
-                      <Image
+                      <SmartImage
                         src={dish.image}
                         alt={dish.name}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        emoji={dish.emoji}
+                        category={dish.category}
+                        sizes="(max-width:1024px) 50vw, 25vw"
+                        className="h-full w-full"
+                        imgClassName="transition-transform duration-700 group-hover:scale-110"
                       />
-                      <span className="absolute top-3 left-3 veg-dot" />
+                      <span className="absolute top-3 left-3 veg-dot z-10" />
                       <span
                         className="absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full"
                         style={{ background: "var(--brass)", color: "#2a1304" }}
@@ -295,14 +282,18 @@ export default function Home() {
       <section className="py-24 px-6" style={{ background: "var(--maroon)" }}>
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <AnimatedSection direction="left" className="relative">
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden" style={{ boxShadow: "0 40px 80px -30px rgba(0,0,0,0.6)" }}>
-              <Image
-                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=85"
-                alt="Traditional South Indian filter coffee"
-                fill
-                className="object-cover"
-              />
-            </div>
+            <TiltCard>
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden" style={{ boxShadow: "0 40px 80px -30px rgba(0,0,0,0.6)" }}>
+                <SmartImage
+                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=85&auto=format&fit=crop"
+                  alt="Traditional South Indian filter coffee"
+                  emoji="☕"
+                  category="Beverages"
+                  sizes="(max-width:1024px) 100vw, 50vw"
+                  className="absolute inset-0"
+                />
+              </div>
+            </TiltCard>
           </AnimatedSection>
           <AnimatedSection direction="right">
             <p className="eyebrow mb-3">The Aruki Ritual</p>

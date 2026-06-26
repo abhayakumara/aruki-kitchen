@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
+import SmartImage from "@/components/SmartImage";
+import TiltCard from "@/components/TiltCard";
 import { menuItems, categories } from "@/data/menu";
 
 export default function MenuPage() {
@@ -70,44 +71,49 @@ export default function MenuPage() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.32 }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+              style={{ perspective: 1200 }}
             >
               {filtered.map((dish) => (
-                <div
-                  key={dish.id}
-                  className="group bg-white rounded-3xl overflow-hidden"
-                  style={{ boxShadow: "0 18px 40px -26px rgba(33,10,14,0.4)" }}
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={dish.image}
-                      alt={dish.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <span className="absolute top-3 left-3 veg-dot" />
-                    {dish.popular && (
-                      <span
-                        className="absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full"
-                        style={{ background: "var(--brass)", color: "#2a1304" }}
-                      >
-                        Popular
-                      </span>
-                    )}
-                  </div>
-                  <div className="p-5">
-                    <div className="flex items-start justify-between gap-2 mb-1.5">
-                      <h3 className="font-display text-lg leading-tight" style={{ color: "var(--ink)" }}>
-                        {dish.name}
-                      </h3>
-                      <span className="font-display text-xl shrink-0" style={{ color: "var(--maroon)" }}>
-                        {dish.price}
-                      </span>
+                <TiltCard key={dish.id} className="h-full" intensity={7}>
+                  <div
+                    className="group bg-white rounded-3xl overflow-hidden h-full"
+                    style={{ boxShadow: "0 18px 40px -26px rgba(33,10,14,0.4)" }}
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <SmartImage
+                        src={dish.image}
+                        alt={dish.name}
+                        emoji={dish.emoji}
+                        category={dish.category}
+                        sizes="(max-width:768px) 100vw, (max-width:1280px) 33vw, 25vw"
+                        className="h-full w-full"
+                        imgClassName="transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <span className="absolute top-3 left-3 veg-dot z-10" />
+                      {dish.popular && (
+                        <span
+                          className="absolute top-3 right-3 z-10 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full"
+                          style={{ background: "var(--brass)", color: "#2a1304" }}
+                        >
+                          Popular
+                        </span>
+                      )}
                     </div>
-                    <p className="text-xs leading-relaxed" style={{ color: "rgba(33,10,14,0.6)" }}>
-                      {dish.description}
-                    </p>
+                    <div className="p-5 tilt-pop">
+                      <div className="flex items-start justify-between gap-2 mb-1.5">
+                        <h3 className="font-display text-lg leading-tight" style={{ color: "var(--ink)" }}>
+                          {dish.name}
+                        </h3>
+                        <span className="font-display text-xl shrink-0" style={{ color: "var(--maroon)" }}>
+                          {dish.price}
+                        </span>
+                      </div>
+                      <p className="text-xs leading-relaxed" style={{ color: "rgba(33,10,14,0.6)" }}>
+                        {dish.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </TiltCard>
               ))}
             </motion.div>
           </AnimatePresence>
