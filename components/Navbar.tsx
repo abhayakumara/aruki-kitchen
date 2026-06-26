@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { site } from "@/data/site";
 
 const links = [
   { href: "/", label: "Home" },
@@ -19,72 +20,87 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isHome = pathname === "/";
-
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || !isHome
-          ? "bg-[#FDF6EC] shadow-md"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? "rgba(33,10,14,0.82)" : "rgba(33,10,14,0.45)",
+        backdropFilter: "blur(14px)",
+        borderBottom: scrolled
+          ? "1px solid rgba(242,216,154,0.16)"
+          : "1px solid rgba(242,216,154,0)",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex flex-col leading-none group">
+        <Link href="/" className="flex items-center gap-3 group">
           <span
-            className={`text-2xl font-bold tracking-tight transition-colors ${
-              scrolled || !isHome ? "text-[#3B1F0E]" : "text-white"
-            }`}
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+            className="grid place-items-center w-10 h-10 rounded-full shrink-0 transition-transform duration-300 group-hover:rotate-12"
+            style={{
+              background: "linear-gradient(180deg,#f2d89a,#e0a82e 60%,#c8901f)",
+              color: "#2a1304",
+              fontFamily: "var(--font-display), serif",
+              fontWeight: 700,
+            }}
           >
-            Aruki
+            अ
           </span>
-          <span
-            className={`text-xs font-medium tracking-[0.2em] uppercase transition-colors ${
-              scrolled || !isHome ? "text-[#C4622D]" : "text-[#D4A853]"
-            }`}
-          >
-            Kitchen
+          <span className="flex flex-col leading-none">
+            <span
+              className="text-xl font-semibold tracking-tight"
+              style={{ fontFamily: "var(--font-display), serif", color: "#f8f1e3" }}
+            >
+              Aruki Kitchen
+            </span>
+            <span
+              className="font-kn text-[11px] tracking-wide"
+              style={{ color: "#e0a82e" }}
+            >
+              {site.nameKannada} · Pure Veg
+            </span>
           </span>
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <li key={l.href}>
-              <Link
-                href={l.href}
-                className={`nav-link text-sm tracking-wide ${
-                  scrolled || !isHome ? "text-[#3B1F0E]" : "text-white"
-                } ${pathname === l.href ? "font-semibold" : ""}`}
-              >
-                {l.label}
-              </Link>
-            </li>
-          ))}
+        <ul className="hidden md:flex items-center gap-9">
+          {links.map((l) => {
+            const active = pathname === l.href;
+            return (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className="relative text-sm font-medium transition-colors duration-200 py-1"
+                  style={{ color: active ? "#e0a82e" : "rgba(248,241,227,0.82)" }}
+                >
+                  {l.label}
+                  <span
+                    className="absolute left-0 -bottom-0.5 h-px transition-all duration-300"
+                    style={{
+                      width: active ? "100%" : "0%",
+                      background: "#e0a82e",
+                    }}
+                  />
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         {/* CTA */}
-        <Link
-          href="/contact"
-          className={`hidden md:inline-block text-sm font-semibold px-5 py-2 rounded transition-all duration-200 ${
-            scrolled || !isHome
-              ? "bg-[#C4622D] text-white hover:bg-[#A04E20]"
-              : "bg-white/20 text-white border border-white/40 hover:bg-white hover:text-[#3B1F0E]"
-          }`}
-        >
-          Find Us
-        </Link>
+        <a href={site.phoneHref} className="hidden md:inline-flex btn-brass text-sm py-2.5 px-5">
+          Call to Order
+        </a>
 
         {/* Mobile hamburger */}
         <button
-          className={`md:hidden ${scrolled || !isHome ? "text-[#3B1F0E]" : "text-white"}`}
+          className="md:hidden"
+          style={{ color: "#f8f1e3" }}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -94,26 +110,27 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="md:hidden bg-[#FDF6EC] border-t border-[#F5E8D3] px-6 py-4 flex flex-col gap-4">
+        <div
+          className="md:hidden px-6 py-5 flex flex-col gap-1"
+          style={{ background: "rgba(33,10,14,0.97)", borderTop: "1px solid rgba(242,216,154,0.14)" }}
+        >
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`text-[#3B1F0E] font-medium py-2 border-b border-[#F5E8D3] ${
-                pathname === l.href ? "text-[#C4622D]" : ""
-              }`}
+              className="py-3 text-base font-medium border-b"
+              style={{
+                color: pathname === l.href ? "#e0a82e" : "rgba(248,241,227,0.85)",
+                borderColor: "rgba(242,216,154,0.1)",
+              }}
               onClick={() => setOpen(false)}
             >
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="btn-primary text-center mt-2"
-            onClick={() => setOpen(false)}
-          >
-            Find Us
-          </Link>
+          <a href={site.phoneHref} className="btn-brass text-center mt-4" onClick={() => setOpen(false)}>
+            Call {site.phoneDisplay}
+          </a>
         </div>
       )}
     </nav>

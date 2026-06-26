@@ -6,67 +6,20 @@ import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import { X, ZoomIn } from "lucide-react";
 
+const G = (id: string) => `https://images.unsplash.com/photo-${id}?w=800&q=80`;
 const images = [
-  {
-    src: "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80",
-    alt: "Crispy Masala Dosa",
-    span: "col-span-1 row-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&q=80",
-    alt: "Idly with Sambar & Chutney",
-    span: "col-span-1",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80",
-    alt: "Crispy Samosa",
-    span: "col-span-1",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
-    alt: "Aruki Filter Coffee",
-    span: "col-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80",
-    alt: "Ghee Pudi Thatte Idly",
-    span: "col-span-1",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&q=80",
-    alt: "Bisi Bele Bhath",
-    span: "col-span-1 row-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=800&q=80",
-    alt: "Mysore Masala Dosa",
-    span: "col-span-1",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1606471191009-63994c53433b?w=800&q=80",
-    alt: "Gulab Jamun",
-    span: "col-span-1",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80",
-    alt: "Aruki Cold Coffee",
-    span: "col-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=800&q=80",
-    alt: "Masala Tea",
-    span: "col-span-1",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
-    alt: "Aruki Kitchen — warm & welcoming",
-    span: "col-span-2",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=800&q=80",
-    alt: "Kesari Bhath",
-    span: "col-span-1",
-  },
+  { src: G("1574894709920-11b28e7367e3"), alt: "Crispy Dosa", span: "col-span-1 row-span-2" },
+  { src: G("1574071318508-1cdbab80d002"), alt: "Idly & Sambar", span: "col-span-1" },
+  { src: G("1601050690597-df0568f70950"), alt: "Crispy Samosa", span: "col-span-1" },
+  { src: G("1414235077428-338989a2e8c0"), alt: "Filter Coffee at Aruki", span: "col-span-2" },
+  { src: G("1567188040759-fb8a883dc6d8"), alt: "Khara Bhath", span: "col-span-1" },
+  { src: G("1585937421612-70a008356fbe"), alt: "Bisi Bele Bhath", span: "col-span-1 row-span-2" },
+  { src: G("1603894584373-5ac82b2ae398"), alt: "Mysore Masala Dosa", span: "col-span-1" },
+  { src: G("1600850056064-a8b29c82d10a"), alt: "Gulab Jamun", span: "col-span-1" },
+  { src: G("1555507036-ab1f4038808a"), alt: "Mango Milkshake", span: "col-span-2" },
+  { src: G("1561336313-0bd5e0b27ec8"), alt: "Masala Tea", span: "col-span-1" },
+  { src: G("1563379091339-03b21ab4a4f8"), alt: "Lemon Rice", span: "col-span-2" },
+  { src: G("1548365328-8c6db3220e4c"), alt: "Kesari Bhath", span: "col-span-1" },
 ];
 
 export default function GalleryPage() {
@@ -75,27 +28,18 @@ export default function GalleryPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 px-6" style={{ background: "#3B1F0E" }}>
-        <div className="absolute inset-0 opacity-10">
-          <Image
-            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=70"
-            alt=""
-            fill
-            className="object-cover"
-          />
-        </div>
+      <section className="relative pt-36 pb-16 px-6 overflow-hidden grain" style={{ background: "var(--ink)" }}>
+        <div
+          className="absolute -top-32 right-10 w-[480px] h-[480px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(224,168,46,0.18), transparent 65%)" }}
+        />
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <AnimatedSection>
-            <p className="text-xs tracking-[0.3em] uppercase font-medium mb-3" style={{ color: "#D4A853" }}>
-              Visual Story
-            </p>
-            <h1
-              className="text-5xl md:text-6xl font-bold text-white mb-4"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-            >
-              Gallery
+            <p className="eyebrow mb-3">Visual Story</p>
+            <h1 className="display-lg font-display mb-4" style={{ color: "var(--cream)" }}>
+              The <span className="ital">gallery</span>
             </h1>
-            <p className="text-lg" style={{ color: "rgba(253,246,236,0.7)" }}>
+            <p className="text-lg" style={{ color: "rgba(248,241,227,0.65)" }}>
               Dosas, idlys, bhaths, filter coffee and more — a visual taste of Aruki Kitchen.
             </p>
           </AnimatedSection>
@@ -103,27 +47,20 @@ export default function GalleryPage() {
       </section>
 
       {/* Grid */}
-      <section className="py-16 px-6" style={{ background: "#FDF6EC" }}>
+      <section className="py-16 px-6" style={{ background: "var(--palm)" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 auto-rows-[220px] gap-4">
           {images.map((img, i) => (
             <AnimatedSection key={i} delay={i * 0.05} className={`${img.span}`}>
               <div
                 className="relative w-full h-full rounded-2xl overflow-hidden cursor-pointer group"
                 onClick={() => setLightbox(img)}
+                style={{ boxShadow: "0 16px 36px -24px rgba(33,10,14,0.4)" }}
               >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                  <ZoomIn
-                    size={32}
-                    className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
+                <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 transition-all duration-300 flex items-center justify-center" style={{ background: "rgba(33,10,14,0)" }}>
+                  <ZoomIn size={30} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300" style={{ background: "linear-gradient(to top, rgba(33,10,14,0.9), transparent)" }}>
                   <p className="text-white text-sm font-medium">{img.alt}</p>
                 </div>
               </div>
@@ -140,7 +77,7 @@ export default function GalleryPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{ background: "rgba(0,0,0,0.92)" }}
+            style={{ background: "rgba(20,6,8,0.94)" }}
             onClick={() => setLightbox(null)}
           >
             <button
@@ -155,18 +92,13 @@ export default function GalleryPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="relative max-w-4xl w-full max-h-[80vh]"
+              className="relative max-w-4xl w-full"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative w-full" style={{ paddingBottom: "66%" }}>
-                <Image
-                  src={lightbox.src}
-                  alt={lightbox.alt}
-                  fill
-                  className="object-contain rounded-xl"
-                />
+                <Image src={lightbox.src} alt={lightbox.alt} fill className="object-contain rounded-2xl" />
               </div>
-              <p className="text-center text-white/70 text-sm mt-4">{lightbox.alt}</p>
+              <p className="text-center text-sm mt-4" style={{ color: "var(--brass-soft)" }}>{lightbox.alt}</p>
             </motion.div>
           </motion.div>
         )}

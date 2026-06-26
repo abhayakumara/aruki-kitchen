@@ -4,42 +4,52 @@ import { site } from "@/data/site";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#3B1F0E] text-[#FDF6EC]">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+    <footer className="relative overflow-hidden grain" style={{ background: "var(--ink)", color: "var(--cream)" }}>
+      <div
+        className="absolute -top-24 right-10 w-[420px] h-[420px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(110,20,35,0.5), transparent 65%)" }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Brand */}
         <div>
-          <h3
-            className="text-3xl font-bold mb-1"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-          >
-            Aruki
-          </h3>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#D4A853] mb-1">Kitchen</p>
-          <p className="text-[10px] tracking-widest uppercase text-[#D4A853]/70 mb-4">
+          <div className="flex items-center gap-3 mb-4">
+            <span
+              className="grid place-items-center w-10 h-10 rounded-full shrink-0"
+              style={{ background: "linear-gradient(180deg,#f2d89a,#e0a82e 60%,#c8901f)", color: "#2a1304", fontFamily: "var(--font-display), serif", fontWeight: 700 }}
+            >
+              अ
+            </span>
+            <div className="leading-none">
+              <h3 className="font-display text-2xl" style={{ color: "var(--cream)" }}>Aruki Kitchen</h3>
+              <p className="font-kn text-[11px]" style={{ color: "var(--brass)" }}>{site.nameKannada}</p>
+            </div>
+          </div>
+          <p className="text-[10px] tracking-[0.25em] uppercase mb-4" style={{ color: "rgba(242,216,154,0.6)" }}>
             {site.tagline}
           </p>
-          <p className="text-sm text-[#FDF6EC]/70 leading-relaxed">{site.blurb}</p>
-          <div className="flex gap-4 mt-6">
-            <a
-              href={site.instagram}
-              aria-label="Instagram"
-              className="w-9 h-9 rounded-full border border-[#FDF6EC]/20 flex items-center justify-center hover:border-[#C4622D] hover:text-[#C4622D] transition-colors text-xs font-bold"
-            >
-              IG
-            </a>
-            <a
-              href={site.facebook}
-              aria-label="Facebook"
-              className="w-9 h-9 rounded-full border border-[#FDF6EC]/20 flex items-center justify-center hover:border-[#C4622D] hover:text-[#C4622D] transition-colors text-xs font-bold"
-            >
-              FB
-            </a>
+          <p className="text-sm leading-relaxed" style={{ color: "rgba(248,241,227,0.6)" }}>{site.blurb}</p>
+          <div className="flex gap-3 mt-6">
+            {[
+              { href: site.instagram, label: "IG" },
+              { href: site.facebook, label: "FB" },
+              { href: site.zomato, label: "Z" },
+            ].map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                aria-label={s.label}
+                className="w-9 h-9 rounded-full grid place-items-center text-xs font-bold transition-colors"
+                style={{ border: "1px solid rgba(242,216,154,0.25)", color: "rgba(248,241,227,0.8)" }}
+              >
+                {s.label}
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Quick links */}
         <div>
-          <h4 className="font-semibold text-[#D4A853] uppercase tracking-widest text-xs mb-5">
+          <h4 className="font-semibold uppercase tracking-widest text-xs mb-5" style={{ color: "var(--brass)" }}>
             Quick Links
           </h4>
           <ul className="flex flex-col gap-3">
@@ -51,10 +61,7 @@ export default function Footer() {
               { href: "/contact", label: "Contact" },
             ].map((l) => (
               <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="text-sm text-[#FDF6EC]/70 hover:text-[#C4622D] transition-colors"
-                >
+                <Link href={l.href} className="text-sm transition-colors hover:text-[#e0a82e]" style={{ color: "rgba(248,241,227,0.65)" }}>
                   {l.label}
                 </Link>
               </li>
@@ -62,28 +69,26 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact info */}
+        {/* Contact */}
         <div>
-          <h4 className="font-semibold text-[#D4A853] uppercase tracking-widest text-xs mb-5">
+          <h4 className="font-semibold uppercase tracking-widest text-xs mb-5" style={{ color: "var(--brass)" }}>
             Visit Us
           </h4>
           <ul className="flex flex-col gap-4">
-            <li className="flex items-start gap-3 text-sm text-[#FDF6EC]/70">
-              <MapPin size={16} className="text-[#C4622D] mt-0.5 shrink-0" />
+            <li className="flex items-start gap-3 text-sm" style={{ color: "rgba(248,241,227,0.65)" }}>
+              <MapPin size={16} style={{ color: "var(--brass)" }} className="mt-0.5 shrink-0" />
               <span>{site.addressShort}</span>
             </li>
-            <li className="flex items-center gap-3 text-sm text-[#FDF6EC]/70">
-              <Phone size={16} className="text-[#C4622D] shrink-0" />
-              <a href={site.phoneHref} className="hover:text-white transition-colors">
-                {site.phoneDisplay}
-              </a>
+            <li className="flex items-center gap-3 text-sm" style={{ color: "rgba(248,241,227,0.65)" }}>
+              <Phone size={16} style={{ color: "var(--brass)" }} className="shrink-0" />
+              <a href={site.phoneHref} className="hover:text-white transition-colors">{site.phoneDisplay}</a>
             </li>
-            <li className="flex items-start gap-3 text-sm text-[#FDF6EC]/70">
-              <Clock size={16} className="text-[#C4622D] mt-0.5 shrink-0" />
+            <li className="flex items-start gap-3 text-sm" style={{ color: "rgba(248,241,227,0.65)" }}>
+              <Clock size={16} style={{ color: "var(--brass)" }} className="mt-0.5 shrink-0" />
               <span>
                 {site.hours.map((h) => (
                   <span key={h.day} className="block">
-                    <span className="font-medium text-[#FDF6EC]/90">{h.day}:</span> {h.time}
+                    <span className="font-medium" style={{ color: "rgba(248,241,227,0.85)" }}>{h.day}:</span> {h.time}
                   </span>
                 ))}
               </span>
@@ -92,7 +97,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-[#FDF6EC]/10 py-6 text-center text-xs text-[#FDF6EC]/40">
+      <div className="relative z-10 border-t py-6 text-center text-xs hairline" style={{ color: "rgba(248,241,227,0.4)" }}>
         © {new Date().getFullYear()} Aruki Kitchen · All rights reserved · 100% Pure Vegetarian
       </div>
     </footer>
