@@ -1,0 +1,208 @@
+export type MenuItem = {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  category: string;
+  veg: boolean;
+  popular?: boolean;
+  image: string;
+};
+
+export const menuItems: MenuItem[] = [
+  // Starters
+  {
+    id: 1,
+    name: "Samosa (2 pcs)",
+    description: "Crispy golden pastry filled with spiced potato and peas, served with mint chutney.",
+    price: "₹60",
+    category: "Starters",
+    veg: true,
+    popular: true,
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+  },
+  {
+    id: 2,
+    name: "Chicken Tikka",
+    description: "Tender chicken marinated in yogurt and spices, char-grilled in a tandoor.",
+    price: "₹220",
+    category: "Starters",
+    veg: false,
+    popular: true,
+    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80",
+  },
+  {
+    id: 3,
+    name: "Paneer Tikka",
+    description: "Cottage cheese marinated in aromatic spices, grilled to smoky perfection.",
+    price: "₹180",
+    category: "Starters",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80",
+  },
+  {
+    id: 4,
+    name: "Veg Spring Rolls",
+    description: "Crispy rolls stuffed with spiced mixed vegetables. Served with sweet chilli dip.",
+    price: "₹120",
+    category: "Starters",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&q=80",
+  },
+  // Mains
+  {
+    id: 5,
+    name: "Butter Chicken",
+    description: "Tender chicken in a rich, velvety tomato-butter gravy. A timeless classic.",
+    price: "₹280",
+    category: "Mains",
+    veg: false,
+    popular: true,
+    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&q=80",
+  },
+  {
+    id: 6,
+    name: "Paneer Butter Masala",
+    description: "Soft cottage cheese cubes in a creamy, mildly spiced tomato gravy.",
+    price: "₹240",
+    category: "Mains",
+    veg: true,
+    popular: true,
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80",
+  },
+  {
+    id: 7,
+    name: "Dal Makhani",
+    description: "Black lentils slow-cooked overnight with butter and cream. Soul food at its best.",
+    price: "₹180",
+    category: "Mains",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80",
+  },
+  {
+    id: 8,
+    name: "Lamb Rogan Josh",
+    description: "Slow-braised lamb in a bold Kashmiri spice gravy with whole aromatics.",
+    price: "₹320",
+    category: "Mains",
+    veg: false,
+    image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&q=80",
+  },
+  {
+    id: 9,
+    name: "Palak Paneer",
+    description: "Fresh cottage cheese in a silky spiced spinach sauce. Light and wholesome.",
+    price: "₹210",
+    category: "Mains",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+  },
+  // Breads & Rice
+  {
+    id: 10,
+    name: "Garlic Naan",
+    description: "Leavened flatbread brushed with garlic butter, baked in a clay tandoor.",
+    price: "₹60",
+    category: "Breads & Rice",
+    veg: true,
+    popular: true,
+    image: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=400&q=80",
+  },
+  {
+    id: 11,
+    name: "Butter Roti",
+    description: "Whole wheat flatbread cooked on a tawa and finished with butter.",
+    price: "₹40",
+    category: "Breads & Rice",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80",
+  },
+  {
+    id: 12,
+    name: "Veg Biryani",
+    description: "Fragrant basmati rice layered with spiced vegetables and fried onions.",
+    price: "₹220",
+    category: "Breads & Rice",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80",
+  },
+  {
+    id: 13,
+    name: "Chicken Biryani",
+    description: "Slow-cooked basmati rice with tender spiced chicken and caramelised onions.",
+    price: "₹280",
+    category: "Breads & Rice",
+    veg: false,
+    popular: true,
+    image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&q=80",
+  },
+  // Desserts
+  {
+    id: 14,
+    name: "Gulab Jamun",
+    description: "Soft milk-solid dumplings soaked in rose-cardamom syrup. Served warm.",
+    price: "₹80",
+    category: "Desserts",
+    veg: true,
+    popular: true,
+    image: "https://images.unsplash.com/photo-1600850056064-a8b29c82d10a?w=400&q=80",
+  },
+  {
+    id: 15,
+    name: "Mango Kulfi",
+    description: "Dense, creamy Indian ice cream made with real Alphonso mango.",
+    price: "₹90",
+    category: "Desserts",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80",
+  },
+  {
+    id: 16,
+    name: "Kheer",
+    description: "Creamy rice pudding slow-cooked with milk, cardamom, saffron and nuts.",
+    price: "₹70",
+    category: "Desserts",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1548365328-8c6db3220e4c?w=400&q=80",
+  },
+  // Drinks
+  {
+    id: 17,
+    name: "Sweet Lassi",
+    description: "Chilled yogurt drink blended with sugar and a hint of cardamom.",
+    price: "₹60",
+    category: "Drinks",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&q=80",
+  },
+  {
+    id: 18,
+    name: "Mango Lassi",
+    description: "Yogurt blended with ripe Alphonso mangoes — refreshing and creamy.",
+    price: "₹80",
+    category: "Drinks",
+    veg: true,
+    popular: true,
+    image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80",
+  },
+  {
+    id: 19,
+    name: "Masala Chai",
+    description: "Hot spiced tea brewed with ginger, cardamom, cinnamon and fresh milk.",
+    price: "₹40",
+    category: "Drinks",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=400&q=80",
+  },
+  {
+    id: 20,
+    name: "Fresh Lime Soda",
+    description: "Freshly squeezed lime with soda water — sweet, salted or mixed.",
+    price: "₹50",
+    category: "Drinks",
+    veg: true,
+    image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&q=80",
+  },
+];
+
+export const categories = ["All", "Starters", "Mains", "Breads & Rice", "Desserts", "Drinks"];
