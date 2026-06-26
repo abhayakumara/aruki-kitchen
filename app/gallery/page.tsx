@@ -8,63 +8,63 @@ import { X, ZoomIn } from "lucide-react";
 
 const images = [
   {
-    src: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80",
-    alt: "Paneer Butter Masala",
+    src: "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80",
+    alt: "Crispy Masala Dosa",
     span: "col-span-1 row-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&q=80",
-    alt: "Butter Chicken",
+    src: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&q=80",
+    alt: "Idly with Sambar & Chutney",
     span: "col-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=800&q=80",
-    alt: "Chicken Biryani",
+    src: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80",
+    alt: "Crispy Samosa",
     span: "col-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&q=80",
-    alt: "Chicken Tikka",
+    src: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
+    alt: "Aruki Filter Coffee",
     span: "col-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=80",
-    alt: "Paneer Tikka",
+    src: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80",
+    alt: "Ghee Pudi Thatte Idly",
     span: "col-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&q=80",
-    alt: "Veg Biryani",
+    src: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&q=80",
+    alt: "Bisi Bele Bhath",
     span: "col-span-1 row-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80",
-    alt: "Dal Makhani",
+    src: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=800&q=80",
+    alt: "Mysore Masala Dosa",
     span: "col-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=80",
-    alt: "Garlic Naan",
+    src: "https://images.unsplash.com/photo-1606471191009-63994c53433b?w=800&q=80",
+    alt: "Gulab Jamun",
     span: "col-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80",
-    alt: "Mango Lassi",
+    src: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80",
+    alt: "Aruki Cold Coffee",
     span: "col-span-2",
   },
   {
     src: "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=800&q=80",
-    alt: "Masala Chai",
+    alt: "Masala Tea",
     span: "col-span-1",
   },
   {
     src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
-    alt: "Restaurant interior",
+    alt: "Aruki Kitchen — warm & welcoming",
     span: "col-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800&q=80",
-    alt: "Lamb Rogan Josh",
+    src: "https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=800&q=80",
+    alt: "Kesari Bhath",
     span: "col-span-1",
   },
 ];
@@ -96,7 +96,7 @@ export default function GalleryPage() {
               Gallery
             </h1>
             <p className="text-lg" style={{ color: "rgba(253,246,236,0.7)" }}>
-              A glimpse into the colours, textures, and stories on every plate.
+              Dosas, idlys, bhaths, filter coffee and more — a visual taste of Aruki Kitchen.
             </p>
           </AnimatedSection>
         </div>

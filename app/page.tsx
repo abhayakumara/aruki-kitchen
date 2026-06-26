@@ -4,26 +4,27 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Leaf, Flame, Heart, Star, ChevronRight } from "lucide-react";
+import { Leaf, Coffee, Heart, Star, ChevronRight } from "lucide-react";
 import { menuItems } from "@/data/menu";
+import { site } from "@/data/site";
 
 const featured = menuItems.filter((m) => m.popular).slice(0, 4);
 
 const pillars = [
   {
     icon: Leaf,
-    title: "Fresh Ingredients",
-    body: "We source the finest spices and produce daily to ensure every dish bursts with authentic flavour.",
+    title: "100% Pure Vegetarian",
+    body: "Every item on our menu is entirely vegetarian — made with the freshest ingredients sourced daily.",
   },
   {
-    icon: Flame,
-    title: "Authentic Recipes",
-    body: "Time-honoured recipes passed down through generations, cooked exactly the way they were meant to be.",
+    icon: Coffee,
+    title: "Famous Filter Coffee",
+    body: "Our filter coffee is brewed the traditional South Indian way — strong decoction, fresh milk, and perfectly frothed.",
   },
   {
     icon: Heart,
-    title: "Made with Love",
-    body: "Every plate is prepared with care and passion. We don't just cook food — we create memories.",
+    title: "Women-Owned & Welcoming",
+    body: "Founded and run by women, Aruki Kitchen is a place of warmth — family-friendly, casual, and always full of heart.",
   },
 ];
 
@@ -31,17 +32,17 @@ const testimonials = [
   {
     name: "Priya S.",
     rating: 5,
-    text: "The butter chicken here is absolutely divine. Rich, creamy, and perfectly spiced. Will keep coming back!",
+    text: "The ghee masala dosa here is absolutely incredible — crispy, golden and the filling is perfectly spiced. Best dosa in Mahadevapura!",
   },
   {
     name: "Rahul M.",
     rating: 5,
-    text: "Warm, welcoming atmosphere and incredible food. The biryani is the best I've had outside my grandmother's kitchen.",
+    text: "Come here every morning for the filter coffee and thatte idly. Prices are unbeatable and the quality is consistently great.",
   },
   {
     name: "Aisha K.",
     rating: 5,
-    text: "Aruki Kitchen is our family's go-to place. The portions are generous and the prices are very fair.",
+    text: "Aruki Kitchen is our family's weekend breakfast spot. The bisi bele bhath is soul food — warm, hearty and so comforting.",
   },
 ];
 
@@ -52,13 +53,13 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1800&q=85"
-            alt="Aruki Kitchen hero"
+            src="https://images.unsplash.com/photo-1630383249896-424e482df921?w=1800&q=85"
+            alt="Aruki Kitchen — Premium South Indian Thindi"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/50 to-black/75" />
         </div>
 
         <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
@@ -66,9 +67,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm tracking-[0.3em] uppercase text-[#D4A853] font-medium mb-4"
+            className="text-sm tracking-[0.3em] uppercase font-medium mb-4"
+            style={{ color: "#D4A853" }}
           >
-            Authentic Indian Cuisine
+            {site.tagline}
           </motion.p>
 
           <motion.h1
@@ -78,9 +80,9 @@ export default function Home() {
             className="text-5xl md:text-7xl font-bold leading-tight mb-6"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Taste the Warmth
+            South India on
             <br />
-            <span style={{ color: "#D4A853" }}>of India</span>
+            <span style={{ color: "#D4A853" }}>Every Plate</span>
           </motion.h1>
 
           <motion.p
@@ -90,8 +92,8 @@ export default function Home() {
             className="text-lg max-w-xl mx-auto mb-10 leading-relaxed"
             style={{ color: "rgba(255,255,255,0.8)" }}
           >
-            Rich flavours, fresh ingredients, and recipes crafted with love — every visit feels
-            like home.
+            Crispy dosas, fluffy idlys, hearty bhaths and legendary filter coffee — served fresh
+            all day at Brigade Metropolis, Bengaluru.
           </motion.p>
 
           <motion.div
@@ -127,6 +129,11 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* ── Pure Veg badge strip ── */}
+      <section className="py-4 px-6 text-center text-sm font-medium tracking-wide" style={{ background: "#3B1F0E", color: "#D4A853" }}>
+        🌿 100% Pure Vegetarian &nbsp;·&nbsp; Women-Owned &nbsp;·&nbsp; Mahadevapura, Bengaluru &nbsp;·&nbsp; Open Daily from 7:30 am
+      </section>
+
       {/* ── Featured Dishes ── */}
       <section className="py-24 px-6" style={{ background: "#FDF6EC" }}>
         <div className="max-w-7xl mx-auto">
@@ -143,9 +150,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featured.map((dish, i) => (
               <AnimatedSection key={dish.id} delay={i * 0.1}>
-                <div
-                  className="group rounded-2xl overflow-hidden bg-white shadow-md card-hover"
-                >
+                <div className="group rounded-2xl overflow-hidden bg-white shadow-md card-hover">
                   <div className="relative h-52 overflow-hidden">
                     <Image
                       src={dish.image}
@@ -153,18 +158,12 @@ export default function Home() {
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute top-3 left-3">
-                      <span
-                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-[9px] font-bold ${
-                          dish.veg
-                            ? "border-green-600 bg-white text-green-600"
-                            : "border-red-600 bg-white text-red-600"
-                        }`}
-                        title={dish.veg ? "Vegetarian" : "Non-vegetarian"}
-                      >
-                        ●
-                      </span>
-                    </div>
+                    <span
+                      className="absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded"
+                      style={{ background: "#C4622D", color: "white" }}
+                    >
+                      Popular
+                    </span>
                   </div>
                   <div className="p-4">
                     <h3
@@ -235,8 +234,7 @@ export default function Home() {
                       (e.currentTarget as HTMLDivElement).style.background = "#C4622D";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.background =
-                        "rgba(196,98,45,0.2)";
+                      (e.currentTarget as HTMLDivElement).style.background = "rgba(196,98,45,0.2)";
                     }}
                   >
                     <p.icon size={28} style={{ color: "#D4A853" }} />
@@ -299,12 +297,12 @@ export default function Home() {
       <section className="relative py-28 px-6 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=1600&q=80"
-            alt="CTA background"
+            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1600&q=80"
+            alt="Filter coffee at Aruki Kitchen"
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0" style={{ background: "rgba(196,98,45,0.88)" }} />
+          <div className="absolute inset-0" style={{ background: "rgba(59,31,14,0.88)" }} />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto text-center text-white">
           <AnimatedSection>
@@ -317,15 +315,17 @@ export default function Home() {
               Leave Happy.
             </h2>
             <p className="text-lg mb-8" style={{ color: "rgba(255,255,255,0.85)" }}>
-              Call us for dine-in or takeaway. We&apos;re always ready to serve you the best.
+              Open weekdays 7:30 am – 8 pm · Weekends 7:30 am – 1 pm
+              <br />
+              Dine-in, takeaway and outdoor seating available.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+91XXXXXXXXXX"
+                href={site.phoneHref}
                 className="font-bold px-8 py-3 rounded transition-colors"
-                style={{ background: "white", color: "#C4622D" }}
+                style={{ background: "white", color: "#3B1F0E" }}
               >
-                Call Now
+                Call {site.phoneDisplay}
               </a>
               <Link href="/menu" className="btn-outline text-base px-8 py-3">
                 Browse Menu

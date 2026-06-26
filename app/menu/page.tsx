@@ -20,7 +20,7 @@ export default function MenuPage() {
       <section className="relative pt-32 pb-20 px-6 overflow-hidden" style={{ background: "#3B1F0E" }}>
         <div className="absolute inset-0 opacity-10">
           <Image
-            src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=1600&q=70"
+            src="https://images.unsplash.com/photo-1630383249896-424e482df921?w=1600&q=70"
             alt=""
             fill
             className="object-cover"
@@ -29,7 +29,7 @@ export default function MenuPage() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <AnimatedSection>
             <p className="text-xs tracking-[0.3em] uppercase font-medium mb-3" style={{ color: "#D4A853" }}>
-              Aruki Kitchen
+              Premium South Indian Thindi
             </p>
             <h1
               className="text-5xl md:text-6xl font-bold text-white mb-4"
@@ -38,7 +38,7 @@ export default function MenuPage() {
               Our Menu
             </h1>
             <p className="text-lg" style={{ color: "rgba(253,246,236,0.7)" }}>
-              Every dish tells a story. Explore our full range of authentic Indian flavours.
+              100% pure vegetarian · Dosa · Tiffin · Rice · Snacks · Beverages
             </p>
           </AnimatedSection>
         </div>
@@ -55,10 +55,7 @@ export default function MenuPage() {
               style={
                 activeCategory === cat
                   ? { background: "#C4622D", color: "white" }
-                  : {
-                      background: "#F5E8D3",
-                      color: "#3B1F0E",
-                    }
+                  : { background: "#F5E8D3", color: "#3B1F0E" }
               }
             >
               {cat}
@@ -99,14 +96,11 @@ export default function MenuPage() {
                         Popular
                       </span>
                     )}
+                    {/* Pure veg green dot */}
                     <span
                       className="absolute top-3 left-3 w-5 h-5 rounded-full border-2 bg-white flex items-center justify-center text-[9px] font-bold"
-                      style={
-                        dish.veg
-                          ? { borderColor: "#16a34a", color: "#16a34a" }
-                          : { borderColor: "#dc2626", color: "#dc2626" }
-                      }
-                      title={dish.veg ? "Vegetarian" : "Non-vegetarian"}
+                      style={{ borderColor: "#16a34a", color: "#16a34a" }}
+                      title="Pure Vegetarian"
                     >
                       ●
                     </span>
@@ -147,8 +141,9 @@ export default function MenuPage() {
       <section className="py-10 px-6 text-center" style={{ background: "#F5E8D3" }}>
         <AnimatedSection>
           <p className="text-sm" style={{ color: "rgba(59,31,14,0.6)" }}>
-            All prices are inclusive of taxes. Menu and prices may change seasonally. Please inform
-            us of any allergies.
+            All prices inclusive of taxes · 100% pure vegetarian · Menu and prices may vary seasonally.
+            <br />
+            Tiffin available 8 am – 11 am &amp; 5 pm – 7 pm · Snacks from 4 pm · Rice from 9 am
           </p>
         </AnimatedSection>
       </section>

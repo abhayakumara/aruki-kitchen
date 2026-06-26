@@ -16,14 +16,15 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Aruki Kitchen | Authentic Indian Cuisine",
+  title: "Aruki Kitchen | Premium South Indian Thindi, Mahadevapura Bengaluru",
   description:
-    "Experience the warmth and flavours of authentic Indian cuisine at Aruki Kitchen. Fresh ingredients, time-honoured recipes, and a welcoming atmosphere.",
-  keywords: "Indian restaurant, authentic Indian food, Aruki Kitchen, Indian cuisine",
+    "100% pure vegetarian South Indian tiffin — crispy dosas, soft idlys, bhaths and filter coffee at The Arcade, Brigade Metropolis, Mahadevapura, Bengaluru. Women-owned.",
+  keywords:
+    "South Indian restaurant Bengaluru, dosa Mahadevapura, idly vada ITPL, filter coffee Brigade Metropolis, pure veg tiffin Bengaluru, Aruki Kitchen",
   openGraph: {
-    title: "Aruki Kitchen | Authentic Indian Cuisine",
+    title: "Aruki Kitchen | Premium South Indian Thindi",
     description:
-      "Experience the warmth and flavours of authentic Indian cuisine at Aruki Kitchen.",
+      "Crispy dosas, soft idlys, hearty bhaths and legendary filter coffee — pure veg, women-owned, Mahadevapura Bengaluru.",
     type: "website",
   },
 };

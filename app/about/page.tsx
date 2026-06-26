@@ -2,19 +2,35 @@
 
 import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Award, Users, Utensils } from "lucide-react";
+import { Award, Users, Coffee } from "lucide-react";
 
 const milestones = [
-  { year: "2018", title: "Doors Open", body: "Aruki Kitchen opened its doors with a simple dream: to share the warmth of authentic Indian home cooking with the community." },
-  { year: "2020", title: "Community Favourite", body: "Despite a tough year, our loyal guests kept us going. We launched takeaway service and reached hundreds of new families." },
-  { year: "2022", title: "Expanded Menu", body: "We introduced our tandoor range and expanded the menu with regional specialities from across India." },
-  { year: "2024", title: "Still Cooking", body: "Today, Aruki Kitchen continues to grow — one plate at a time, with the same love it started with." },
+  {
+    year: "The Beginning",
+    title: "A Kitchen Born from Passion",
+    body: "Aruki Kitchen opened its doors in Mahadevapura with one purpose — to bring the real taste of South Indian home cooking to the heart of Bengaluru's tech corridor.",
+  },
+  {
+    year: "Growing Up",
+    title: "Community Favourite",
+    body: "Word spread fast. The queue outside The Arcade grew longer each morning as regulars kept coming back for the ghee dosa and filter coffee that tasted just like home.",
+  },
+  {
+    year: "Expanding",
+    title: "A Menu for Every Hour",
+    body: "We expanded from breakfast tiffin to an all-day menu — bhaths, rice dishes, evening snacks, sandwiches, fresh juices and milkshakes — something for every craving.",
+  },
+  {
+    year: "Today",
+    title: "Still Cooking with Heart",
+    body: "Run by women, loved by families and trusted by the solo diner. Aruki Kitchen keeps growing — one plate at a time.",
+  },
 ];
 
 const stats = [
-  { icon: Utensils, value: "50+", label: "Dishes on the menu" },
+  { icon: Coffee, value: "₹25", label: "A cup of filter coffee" },
   { icon: Users, value: "10k+", label: "Happy guests served" },
-  { icon: Award, value: "6+", label: "Years of excellence" },
+  { icon: Award, value: "100%", label: "Pure vegetarian" },
 ];
 
 export default function AboutPage() {
@@ -42,7 +58,7 @@ export default function AboutPage() {
               About Aruki Kitchen
             </h1>
             <p className="text-lg" style={{ color: "rgba(253,246,236,0.7)" }}>
-              Born from a passion for flavour and a love of bringing people together around the table.
+              A women-owned South Indian tiffin kitchen — built on tradition, run with heart.
             </p>
           </AnimatedSection>
         </div>
@@ -59,8 +75,8 @@ export default function AboutPage() {
               />
               <div className="relative rounded-2xl overflow-hidden h-[480px]">
                 <Image
-                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85"
-                  alt="Aruki Kitchen interior"
+                  src="https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=85"
+                  alt="Aruki Kitchen — crispy dosa fresh off the tawa"
                   fill
                   className="object-cover"
                 />
@@ -70,8 +86,8 @@ export default function AboutPage() {
                 style={{ borderColor: "#FDF6EC" }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=300&q=80"
-                  alt="Aruki dish"
+                  src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&q=80"
+                  alt="Aruki Kitchen filter coffee"
                   fill
                   className="object-cover"
                 />
@@ -93,23 +109,42 @@ export default function AboutPage() {
                 fontFamily: "var(--font-playfair), Georgia, serif",
               }}
             >
-              A Labour of Love, Seasoned with Tradition
+              Thindi the Way It Should Be
             </h2>
             <p className="leading-relaxed mb-5" style={{ color: "rgba(59,31,14,0.7)" }}>
-              Aruki Kitchen was born from a belief that food is more than sustenance — it is memory,
-              culture, and connection. We started small, with a handful of treasured family recipes
-              and an unwavering commitment to quality.
+              Aruki Kitchen is a 100% pure-vegetarian South Indian breakfast and tiffin spot inside
+              The Arcade at Brigade Metropolis, Mahadevapura. We serve the food Bengaluru grew up
+              on — crispy dosas, soft idlys, warm bhaths and filter coffee that actually tastes like
+              filter coffee.
             </p>
             <p className="leading-relaxed mb-5" style={{ color: "rgba(59,31,14,0.7)" }}>
-              Every spice we use is hand-picked, every sauce is made fresh, and every dish is
-              prepared as if we&apos;re cooking for family. Because to us, that&apos;s exactly what
-              our guests are.
+              Founded and run by women, Aruki is a place where the food is honest, the portions are
+              generous, and the welcome is always warm. Whether you&apos;re grabbing a quick
+              breakfast before work or sitting down for a family lunch, there&apos;s a plate here
+              for you.
             </p>
             <p className="leading-relaxed" style={{ color: "rgba(59,31,14,0.7)" }}>
               The name &ldquo;Aruki&rdquo; reflects a journey — of flavours, of people, and of a
-              kitchen that keeps growing. We invite you to be part of that journey, one meal at a
-              time.
+              kitchen that keeps growing. Every plate we send out carries the same care as the very
+              first one.
             </p>
+            <div className="flex flex-wrap gap-3 mt-8">
+              {[
+                "Women-Owned",
+                "Pure Vegetarian",
+                "LGBTQ+ Friendly",
+                "Family-Friendly",
+                "Wheelchair Accessible",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs px-3 py-1.5 rounded-full font-medium"
+                  style={{ background: "#F5E8D3", color: "#3B1F0E" }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </AnimatedSection>
         </div>
       </section>
@@ -148,22 +183,20 @@ export default function AboutPage() {
           </AnimatedSection>
 
           <div className="relative">
-            {/* Timeline line */}
             <div
               className="absolute left-6 top-0 bottom-0 w-0.5"
               style={{ background: "#D4A853" }}
             />
-
             <div className="flex flex-col gap-10">
               {milestones.map((m, i) => (
                 <AnimatedSection key={m.year} delay={i * 0.1} direction="left">
                   <div className="flex gap-6">
                     <div className="relative shrink-0">
                       <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold text-white z-10 relative"
+                        className="w-12 h-12 rounded-full flex items-center justify-center text-[10px] font-bold text-white z-10 relative text-center leading-tight px-1"
                         style={{ background: "#C4622D" }}
                       >
-                        {m.year.slice(2)}
+                        {i + 1}
                       </div>
                     </div>
                     <div className="pb-2">

@@ -3,13 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
-import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react";
-
-const hours = [
-  { day: "Monday – Friday", time: "11:00 am – 10:00 pm" },
-  { day: "Saturday", time: "11:00 am – 10:30 pm" },
-  { day: "Sunday", time: "12:00 pm – 9:00 pm" },
-];
+import { MapPin, Phone, Clock, MessageCircle, Send } from "lucide-react";
+import { site } from "@/data/site";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -84,14 +79,15 @@ export default function ContactPage() {
                     Address
                   </p>
                   <p className="text-sm leading-relaxed" style={{ color: "rgba(59,31,14,0.65)" }}>
-                    Aruki Kitchen
-                    <br />
-                    [Address to be updated]
-                    <br />
-                    India
+                    {site.addressLines.map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i < site.addressLines.length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                   <a
-                    href="https://maps.app.goo.gl/Kqt24AQwSoPWPyJ76"
+                    href={site.mapsDirections}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm font-medium mt-1 inline-block"
@@ -115,11 +111,11 @@ export default function ContactPage() {
                     Phone
                   </p>
                   <a
-                    href="tel:+91XXXXXXXXXX"
+                    href={site.phoneHref}
                     className="text-sm"
                     style={{ color: "rgba(59,31,14,0.65)" }}
                   >
-                    +91 XXXX XXX XXX
+                    {site.phoneDisplay}
                   </a>
                 </div>
               </div>
@@ -137,35 +133,13 @@ export default function ContactPage() {
                     WhatsApp
                   </p>
                   <a
-                    href="https://wa.me/91XXXXXXXXXX"
+                    href={site.whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm"
                     style={{ color: "rgba(59,31,14,0.65)" }}
                   >
                     Chat with us on WhatsApp
-                  </a>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="flex gap-4 mb-8">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
-                  style={{ background: "#F5E8D3" }}
-                >
-                  <Mail size={20} style={{ color: "#C4622D" }} />
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: "#3B1F0E" }}>
-                    Email
-                  </p>
-                  <a
-                    href="mailto:arukikitchen@example.com"
-                    className="text-sm"
-                    style={{ color: "rgba(59,31,14,0.65)" }}
-                  >
-                    arukikitchen@example.com
                   </a>
                 </div>
               </div>
@@ -183,7 +157,7 @@ export default function ContactPage() {
                     Opening Hours
                   </p>
                   <div className="flex flex-col gap-2">
-                    {hours.map((h) => (
+                    {site.hours.map((h) => (
                       <div key={h.day} className="flex justify-between text-sm">
                         <span style={{ color: "rgba(59,31,14,0.65)" }}>{h.day}</span>
                         <span className="font-medium" style={{ color: "#3B1F0E" }}>
@@ -192,6 +166,9 @@ export default function ContactPage() {
                       </div>
                     ))}
                   </div>
+                  <p className="text-xs mt-3" style={{ color: "rgba(59,31,14,0.45)" }}>
+                    Tiffin: 8–11 am &amp; 5–7 pm · Snacks: 4–7 pm · Rice: 9 am–3 pm
+                  </p>
                 </div>
               </div>
             </div>
@@ -211,9 +188,7 @@ export default function ContactPage() {
               </h2>
 
               {sent ? (
-                <div
-                  className="flex flex-col items-center justify-center py-16 text-center"
-                >
+                <div className="flex flex-col items-center justify-center py-16 text-center">
                   <div
                     className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
                     style={{ background: "#F5E8D3" }}
@@ -247,12 +222,8 @@ export default function ContactPage() {
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       placeholder="Ravi Kumar"
-                      className="w-full px-4 py-3 rounded-xl border text-sm outline-none focus:ring-2 transition"
-                      style={{
-                        borderColor: "#F5E8D3",
-                        background: "#FDF6EC",
-                        color: "#3B1F0E",
-                      }}
+                      className="w-full px-4 py-3 rounded-xl border text-sm outline-none transition"
+                      style={{ borderColor: "#F5E8D3", background: "#FDF6EC", color: "#3B1F0E" }}
                       onFocus={(e) => (e.target.style.borderColor = "#C4622D")}
                       onBlur={(e) => (e.target.style.borderColor = "#F5E8D3")}
                     />
@@ -273,11 +244,7 @@ export default function ContactPage() {
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                       placeholder="you@example.com"
                       className="w-full px-4 py-3 rounded-xl border text-sm outline-none transition"
-                      style={{
-                        borderColor: "#F5E8D3",
-                        background: "#FDF6EC",
-                        color: "#3B1F0E",
-                      }}
+                      style={{ borderColor: "#F5E8D3", background: "#FDF6EC", color: "#3B1F0E" }}
                       onFocus={(e) => (e.target.style.borderColor = "#C4622D")}
                       onBlur={(e) => (e.target.style.borderColor = "#F5E8D3")}
                     />
@@ -296,13 +263,9 @@ export default function ContactPage() {
                       required
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Tell us about a reservation, feedback, or anything else..."
+                      placeholder="Ask us anything, or just say hi!"
                       className="w-full px-4 py-3 rounded-xl border text-sm outline-none resize-none transition"
-                      style={{
-                        borderColor: "#F5E8D3",
-                        background: "#FDF6EC",
-                        color: "#3B1F0E",
-                      }}
+                      style={{ borderColor: "#F5E8D3", background: "#FDF6EC", color: "#3B1F0E" }}
                       onFocus={(e) => (e.target.style.borderColor = "#C4622D")}
                       onBlur={(e) => (e.target.style.borderColor = "#F5E8D3")}
                     />
@@ -326,14 +289,14 @@ export default function ContactPage() {
         <AnimatedSection>
           <div className="max-w-6xl mx-auto rounded-2xl overflow-hidden shadow-md">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.123456789!2d77.5946!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zAruki+Kitchen!5e0!3m2!1sen!2sin!4v1234567890"
+              src={site.mapsEmbed}
               width="100%"
               height="420"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Aruki Kitchen location"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Aruki Kitchen location — Brigade Metropolis, Mahadevapura, Bengaluru"
             />
           </div>
         </AnimatedSection>
