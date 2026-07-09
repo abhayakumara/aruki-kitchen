@@ -4,6 +4,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SmartImage from "@/components/SmartImage";
 import TiltCard from "@/components/TiltCard";
 import { Award, Users, Coffee } from "lucide-react";
+import { IMG } from "@/data/menu";
 
 const milestones = [
   {
@@ -67,8 +68,8 @@ export default function AboutPage() {
               <TiltCard intensity={6}>
                 <div className="relative rounded-3xl overflow-hidden h-[480px]" style={{ boxShadow: "0 30px 60px -30px rgba(33,10,14,0.5)" }}>
                   <SmartImage
-                    src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=85&auto=format&fit=crop"
-                    alt="Crispy dosa fresh off the tawa at Aruki Kitchen"
+                    src={IMG.masalaDosa}
+                    alt="Masala dosa fresh off the tawa at Aruki Kitchen"
                     emoji="🥞"
                     category="Dosa"
                     sizes="(max-width:1024px) 100vw, 50vw"
@@ -78,7 +79,7 @@ export default function AboutPage() {
               </TiltCard>
               <div className="absolute -bottom-6 -right-6 w-36 h-36 rounded-2xl overflow-hidden border-4 z-10" style={{ borderColor: "var(--palm)" }}>
                 <SmartImage
-                  src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=300&q=80&auto=format&fit=crop"
+                  src={IMG.filterCoffee}
                   alt="Aruki Kitchen filter coffee"
                   emoji="☕"
                   category="Beverages"

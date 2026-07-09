@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Coffee } from "lucide-react";
 import SmartImage from "@/components/SmartImage";
+import { IMG } from "@/data/menu";
 
 /**
  * The hero centrepiece — a layered 3D scene. The whole cluster tilts toward
@@ -57,8 +58,8 @@ export default function HeroPlate() {
           }}
         >
           <SmartImage
-            src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=900&q=85&auto=format&fit=crop"
-            alt="Crispy masala dosa served at Aruki Kitchen"
+            src={IMG.masalaDosa}
+            alt="Masala dosa — Aruki Kitchen's signature plate"
             emoji="🥞"
             category="Dosa"
             priority

@@ -7,21 +7,22 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SmartImage from "@/components/SmartImage";
 import TiltCard from "@/components/TiltCard";
 import { X, ZoomIn } from "lucide-react";
+import { IMG } from "@/data/menu";
 
-const G = (id: string) => `https://images.unsplash.com/photo-${id}?w=900&q=80&auto=format&fit=crop`;
+// Verified Wikimedia Commons photos — each shows the dish it's captioned as.
 const images = [
-  { src: G("1574894709920-11b28e7367e3"), alt: "Crispy Dosa", emoji: "🥞", category: "Dosa", span: "col-span-1 row-span-2" },
-  { src: G("1574071318508-1cdbab80d002"), alt: "Idly & Sambar", emoji: "🍚", category: "Tiffin", span: "col-span-1" },
-  { src: G("1601050690597-df0568f70950"), alt: "Crispy Samosa", emoji: "🥟", category: "Snacks", span: "col-span-1" },
-  { src: G("1414235077428-338989a2e8c0"), alt: "Filter Coffee at Aruki", emoji: "☕", category: "Beverages", span: "col-span-2" },
-  { src: G("1567188040759-fb8a883dc6d8"), alt: "Khara Bhath", emoji: "🍲", category: "Rice & Bhath", span: "col-span-1" },
-  { src: G("1585937421612-70a008356fbe"), alt: "Bisi Bele Bhath", emoji: "🍛", category: "Rice & Bhath", span: "col-span-1 row-span-2" },
-  { src: G("1603894584373-5ac82b2ae398"), alt: "Mysore Masala Dosa", emoji: "🌶️", category: "Dosa", span: "col-span-1" },
-  { src: G("1600850056064-a8b29c82d10a"), alt: "Gulab Jamun", emoji: "🍡", category: "Desserts", span: "col-span-1" },
-  { src: G("1555507036-ab1f4038808a"), alt: "Mango Milkshake", emoji: "🥭", category: "Beverages", span: "col-span-2" },
-  { src: G("1561336313-0bd5e0b27ec8"), alt: "Masala Tea", emoji: "🍵", category: "Beverages", span: "col-span-1" },
-  { src: G("1563379091339-03b21ab4a4f8"), alt: "Lemon Rice", emoji: "🍋", category: "Rice & Bhath", span: "col-span-2" },
-  { src: G("1548365328-8c6db3220e4c"), alt: "Kesari Bhath", emoji: "🍮", category: "Desserts", span: "col-span-1" },
+  { src: IMG.masalaDosa, alt: "Masala Dosey", emoji: "🥞", category: "Dosa", span: "col-span-1 row-span-2" },
+  { src: IMG.idli, alt: "Idly & Sambar", emoji: "🍚", category: "Tiffin", span: "col-span-1" },
+  { src: IMG.samosa, alt: "Crispy Samosa", emoji: "🥟", category: "Snacks", span: "col-span-1" },
+  { src: IMG.filterCoffee, alt: "Filter Coffee at Aruki", emoji: "☕", category: "Beverages", span: "col-span-2" },
+  { src: IMG.upma, alt: "Khara Bhath", emoji: "🍲", category: "Rice & Bhath", span: "col-span-1" },
+  { src: IMG.bisiBele, alt: "Bisi Bele Bhath", emoji: "🍛", category: "Rice & Bhath", span: "col-span-1 row-span-2" },
+  { src: IMG.mysoreDosa, alt: "Mysore Masala Dosey", emoji: "🌶️", category: "Dosa", span: "col-span-1" },
+  { src: IMG.gulabJamun, alt: "Gulab Jamun", emoji: "🍡", category: "Desserts", span: "col-span-1" },
+  { src: IMG.vadaSambar, alt: "Medu Vade & Sambar", emoji: "🍩", category: "Tiffin", span: "col-span-2" },
+  { src: IMG.masalaChai, alt: "Masala Tea", emoji: "🍵", category: "Beverages", span: "col-span-1" },
+  { src: IMG.thatteIdli, alt: "Thatte Idly", emoji: "🍮", category: "Tiffin", span: "col-span-2" },
+  { src: IMG.kesari, alt: "Kesari Bhath", emoji: "🍮", category: "Desserts", span: "col-span-1" },
 ];
 
 export default function GalleryPage() {

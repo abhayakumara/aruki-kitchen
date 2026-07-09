@@ -9,7 +9,7 @@ import HeroPlate from "@/components/HeroPlate";
 import Carousel3D from "@/components/Carousel3D";
 import Magnetic from "@/components/Magnetic";
 import { Leaf, Coffee, Heart, Star, ArrowRight, Phone } from "lucide-react";
-import { menuItems } from "@/data/menu";
+import { menuItems, IMG } from "@/data/menu";
 import { site } from "@/data/site";
 
 const featured = menuItems.filter((m) => m.popular).slice(0, 4);
@@ -285,8 +285,8 @@ export default function Home() {
             <TiltCard>
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden" style={{ boxShadow: "0 40px 80px -30px rgba(0,0,0,0.6)" }}>
                 <SmartImage
-                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=85&auto=format&fit=crop"
-                  alt="Traditional South Indian filter coffee"
+                  src={IMG.filterCoffee}
+                  alt="Traditional South Indian filter coffee in a steel davara"
                   emoji="☕"
                   category="Beverages"
                   sizes="(max-width:1024px) 100vw, 50vw"
