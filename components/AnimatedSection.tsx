@@ -18,21 +18,22 @@ export default function AnimatedSection({
 }: Props) {
   const initial =
     direction === "up"
-      ? { opacity: 0, y: 40 }
+      ? { opacity: 0, y: 44, scale: 0.985 }
       : direction === "left"
-      ? { opacity: 0, x: -40 }
+      ? { opacity: 0, x: -48, rotateY: 6 }
       : direction === "right"
-      ? { opacity: 0, x: 40 }
-      : { opacity: 0 };
+      ? { opacity: 0, x: 48, rotateY: -6 }
+      : { opacity: 0, scale: 0.97 };
 
-  const animate = { opacity: 1, y: 0, x: 0 };
+  const animate = { opacity: 1, y: 0, x: 0, scale: 1, rotateY: 0 };
 
   return (
     <motion.div
       initial={initial}
       whileInView={animate}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={{ transformPerspective: 1200 }}
       className={className}
     >
       {children}

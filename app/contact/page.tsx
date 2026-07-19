@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
+import TiltCard from "@/components/TiltCard";
 import { MapPin, Phone, Clock, MessageCircle, Send } from "lucide-react";
 import { site } from "@/data/site";
 
@@ -65,8 +67,15 @@ export default function ContactPage() {
               ) },
               { icon: Phone, title: "Phone", body: <a href={site.phoneHref} style={{ color: "rgba(33,10,14,0.65)" }}>{site.phoneDisplay}</a> },
               { icon: MessageCircle, title: "WhatsApp", body: <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ color: "rgba(33,10,14,0.65)" }}>Chat with us on WhatsApp</a> },
-            ].map((row) => (
-              <div key={row.title} className="flex gap-4 mb-6">
+            ].map((row, i) => (
+              <motion.div
+                key={row.title}
+                initial={{ opacity: 0, x: -28 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.55, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ x: 6 }}
+                className="flex gap-4 mb-6">
                 <div className="w-12 h-12 rounded-2xl grid place-items-center shrink-0" style={{ background: "rgba(110,20,35,0.1)" }}>
                   <row.icon size={20} style={{ color: "var(--maroon)" }} />
                 </div>
@@ -74,7 +83,7 @@ export default function ContactPage() {
                   <p className="font-semibold mb-1" style={{ color: "var(--ink)" }}>{row.title}</p>
                   <p className="text-sm leading-relaxed" style={{ color: "rgba(33,10,14,0.65)" }}>{row.body}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
 
             {/* Hours */}
@@ -101,6 +110,7 @@ export default function ContactPage() {
 
           {/* Form */}
           <AnimatedSection direction="right">
+            <TiltCard intensity={4}>
             <div className="bg-white rounded-3xl p-8" style={{ boxShadow: "0 28px 60px -34px rgba(33,10,14,0.45)" }}>
               <h2 className="font-display text-2xl mb-2" style={{ color: "var(--ink)" }}>Send us a message</h2>
               <p className="text-sm mb-6" style={{ color: "rgba(33,10,14,0.55)" }}>
@@ -137,6 +147,7 @@ export default function ContactPage() {
                 </form>
               )}
             </div>
+            </TiltCard>
           </AnimatedSection>
         </div>
       </section>
@@ -144,7 +155,9 @@ export default function ContactPage() {
       {/* Map */}
       <section className="px-6 pb-20" style={{ background: "var(--palm)" }}>
         <AnimatedSection>
-          <div className="max-w-6xl mx-auto rounded-3xl overflow-hidden" style={{ boxShadow: "0 28px 60px -34px rgba(33,10,14,0.5)" }}>
+          <div className="max-w-6xl mx-auto" style={{ perspective: 1400 }}>
+          <TiltCard intensity={3}>
+          <div className="rounded-3xl overflow-hidden" style={{ boxShadow: "0 28px 60px -34px rgba(33,10,14,0.5)" }}>
             <iframe
               src={site.mapsEmbed}
               width="100%"
@@ -155,6 +168,8 @@ export default function ContactPage() {
               referrerPolicy="strict-origin-when-cross-origin"
               title="Aruki Kitchen location — Brigade Metropolis, Mahadevapura, Bengaluru"
             />
+          </div>
+          </TiltCard>
           </div>
         </AnimatedSection>
       </section>

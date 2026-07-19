@@ -1,6 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { MapPin, Phone, Clock } from "lucide-react";
 import { site } from "@/data/site";
+
+// Shared reveal for footer columns — staggered rise as the footer scrolls in.
+const col = (i: number) => ({
+  initial: { opacity: 0, y: 32 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] as const },
+});
 
 export default function Footer() {
   return (
@@ -11,7 +22,7 @@ export default function Footer() {
       />
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Brand */}
-        <div>
+        <motion.div {...col(0)}>
           <div className="flex items-center gap-3 mb-4">
             <span
               className="grid place-items-center w-10 h-10 rounded-full shrink-0"
@@ -34,21 +45,24 @@ export default function Footer() {
               { href: site.facebook, label: "FB" },
               { href: site.zomato, label: "Z" },
             ].map((s) => (
-              <a
+              <motion.a
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="w-9 h-9 rounded-full grid place-items-center text-xs font-bold transition-colors"
+                whileHover={{ y: -4, scale: 1.12, borderColor: "rgba(224,168,46,0.8)" }}
+                whileTap={{ scale: 0.94 }}
+                transition={{ type: "spring", stiffness: 350, damping: 18 }}
+                className="w-9 h-9 rounded-full grid place-items-center text-xs font-bold"
                 style={{ border: "1px solid rgba(242,216,154,0.25)", color: "rgba(248,241,227,0.8)" }}
               >
                 {s.label}
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Quick links */}
-        <div>
+        <motion.div {...col(1)}>
           <h4 className="font-semibold uppercase tracking-widest text-xs mb-5" style={{ color: "var(--brass)" }}>
             Quick Links
           </h4>
@@ -67,10 +81,10 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
         {/* Contact */}
-        <div>
+        <motion.div {...col(2)}>
           <h4 className="font-semibold uppercase tracking-widest text-xs mb-5" style={{ color: "var(--brass)" }}>
             Visit Us
           </h4>
@@ -94,7 +108,7 @@ export default function Footer() {
               </span>
             </li>
           </ul>
-        </div>
+        </motion.div>
       </div>
 
       <div className="relative z-10 border-t py-6 text-center text-xs hairline" style={{ color: "rgba(248,241,227,0.4)" }}>

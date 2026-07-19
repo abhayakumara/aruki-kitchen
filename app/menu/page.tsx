@@ -46,14 +46,22 @@ export default function MenuPage() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className="whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shrink-0"
+                className="relative whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium transition-colors duration-300 shrink-0"
                 style={
                   active
-                    ? { background: "linear-gradient(180deg,#f2d89a,#e0a82e)", color: "#2a1304" }
+                    ? { color: "#2a1304" }
                     : { background: "rgba(248,241,227,0.07)", color: "rgba(248,241,227,0.75)", border: "1px solid rgba(242,216,154,0.16)" }
                 }
               >
-                {cat}
+                {active && (
+                  <motion.span
+                    layoutId="menu-tab-pill"
+                    className="absolute inset-0 rounded-full"
+                    style={{ background: "linear-gradient(180deg,#f2d89a,#e0a82e)", boxShadow: "0 6px 18px -6px rgba(224,168,46,0.55)" }}
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">{cat}</span>
               </button>
             );
           })}
@@ -66,15 +74,24 @@ export default function MenuPage() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.32 }}
+              initial="hidden"
+              animate="show"
+              exit={{ opacity: 0, y: -10, transition: { duration: 0.22 } }}
+              variants={{ show: { transition: { staggerChildren: 0.045 } } }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
               style={{ perspective: 1200 }}
             >
               {filtered.map((dish) => (
-                <TiltCard key={dish.id} className="h-full" intensity={7}>
+                <motion.div
+                  key={dish.id}
+                  variants={{
+                    hidden: { opacity: 0, y: 34, rotateX: -14, scale: 0.96 },
+                    show: { opacity: 1, y: 0, rotateX: 0, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+                  }}
+                  style={{ transformPerspective: 1200 }}
+                  className="h-full"
+                >
+                <TiltCard className="h-full" intensity={7}>
                   <div
                     className="group bg-white rounded-3xl overflow-hidden h-full"
                     style={{ boxShadow: "0 18px 40px -26px rgba(33,10,14,0.4)" }}
@@ -114,6 +131,7 @@ export default function MenuPage() {
                     </div>
                   </div>
                 </TiltCard>
+                </motion.div>
               ))}
             </motion.div>
           </AnimatePresence>
