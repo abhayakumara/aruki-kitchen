@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import TiltCard from "@/components/TiltCard";
+import Magnetic from "@/components/Magnetic";
 import { MapPin, Phone, Clock, MessageCircle, Send } from "lucide-react";
 import { site } from "@/data/site";
 
@@ -141,9 +142,16 @@ export default function ContactPage() {
                     <label htmlFor="message" className="block text-sm font-medium mb-1.5" style={{ color: "var(--ink)" }}>Message</label>
                     <textarea id="message" rows={5} required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Ask us anything, or just say hi!" className="w-full px-4 py-3 rounded-xl border text-sm outline-none resize-none transition" style={inputStyle} onFocus={(e) => (e.target.style.borderColor = "#6e1423")} onBlur={(e) => (e.target.style.borderColor = "rgba(110,20,35,0.18)")} />
                   </div>
-                  <button type="submit" className="btn-brass justify-center">
-                    <Send size={16} /> Send via WhatsApp
-                  </button>
+                  <Magnetic className="w-full" strength={0.25}>
+                    <motion.button
+                      type="submit"
+                      className="btn-brass justify-center w-full"
+                      whileTap={{ scale: 0.97 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    >
+                      <Send size={16} /> Send via WhatsApp
+                    </motion.button>
+                  </Magnetic>
                 </form>
               )}
             </div>

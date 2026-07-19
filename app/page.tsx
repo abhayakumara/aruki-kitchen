@@ -262,16 +262,22 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {pillars.map((p, i) => (
               <AnimatedSection key={p.title} delay={i * 0.12}>
-                <div className="h-full p-8 rounded-3xl card-glass">
-                  <div
+                <motion.div
+                  className="group h-full p-8 rounded-3xl card-glass"
+                  whileHover={{ y: -8, borderColor: "rgba(224,168,46,0.4)" }}
+                  transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                >
+                  <motion.div
                     className="w-14 h-14 rounded-2xl grid place-items-center mb-6"
                     style={{ background: "rgba(224,168,46,0.14)", border: "1px solid rgba(224,168,46,0.3)" }}
+                    whileHover={{ rotate: -8, scale: 1.08 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 14 }}
                   >
                     <p.icon size={26} style={{ color: "var(--brass)" }} />
-                  </div>
+                  </motion.div>
                   <h3 className="font-display text-2xl mb-3" style={{ color: "var(--cream)" }}>{p.title}</h3>
                   <p className="leading-relaxed text-sm" style={{ color: "rgba(248,241,227,0.62)" }}>{p.body}</p>
-                </div>
+                </motion.div>
               </AnimatedSection>
             ))}
           </div>
@@ -331,17 +337,30 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
               <AnimatedSection key={t.name} delay={i * 0.1}>
-                <div className="h-full bg-white rounded-3xl p-8" style={{ boxShadow: "0 20px 44px -28px rgba(33,10,14,0.4)" }}>
+                <motion.div
+                  className="h-full bg-white rounded-3xl p-8"
+                  style={{ boxShadow: "0 20px 44px -28px rgba(33,10,14,0.4)" }}
+                  whileHover={{ y: -8, boxShadow: "0 34px 64px -30px rgba(33,10,14,0.55)" }}
+                  transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                >
                   <div className="flex gap-1 mb-4">
                     {Array.from({ length: 5 }).map((_, j) => (
-                      <Star key={j} size={16} style={{ color: "var(--brass)", fill: "var(--brass)" }} />
+                      <motion.span
+                        key={j}
+                        initial={{ opacity: 0, scale: 0.4, rotate: -30 }}
+                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.15 + j * 0.07, type: "spring", stiffness: 320, damping: 16 }}
+                      >
+                        <Star size={16} style={{ color: "var(--brass)", fill: "var(--brass)" }} />
+                      </motion.span>
                     ))}
                   </div>
                   <p className="leading-relaxed mb-6 font-display text-lg" style={{ color: "rgba(33,10,14,0.82)" }}>
                     &ldquo;{t.text}&rdquo;
                   </p>
                   <p className="font-semibold text-sm" style={{ color: "var(--maroon)" }}>— {t.name}</p>
-                </div>
+                </motion.div>
               </AnimatedSection>
             ))}
           </div>
@@ -364,10 +383,14 @@ export default function Home() {
               Dine-in · Takeaway · Outdoor seating
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <a href={site.phoneHref} className="btn-brass">
-                <Phone size={18} /> Call {site.phoneDisplay}
-              </a>
-              <Link href="/contact" className="btn-ghost">Find Us <ArrowRight size={17} /></Link>
+              <Magnetic>
+                <a href={site.phoneHref} className="btn-brass">
+                  <Phone size={18} /> Call {site.phoneDisplay}
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <Link href="/contact" className="btn-ghost">Find Us <ArrowRight size={17} /></Link>
+              </Magnetic>
             </div>
           </AnimatedSection>
         </div>
