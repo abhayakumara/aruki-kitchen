@@ -1,8 +1,11 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import SmartImage from "@/components/SmartImage";
 import TiltCard from "@/components/TiltCard";
+import CountUp from "@/components/CountUp";
 import { Award, Users, Coffee } from "lucide-react";
 import { IMG } from "@/data/menu";
 
@@ -30,14 +33,21 @@ const milestones = [
 ];
 
 const stats = [
-  { icon: Coffee, value: "₹25", label: "A cup of real filter coffee" },
-  { icon: Users, value: "10k+", label: "Happy guests served" },
-  { icon: Award, value: "100%", label: "Pure vegetarian, always" },
+  { icon: Coffee, prefix: "₹", value: 25, suffix: "", label: "A cup of real filter coffee" },
+  { icon: Users, prefix: "", value: 10, suffix: "k+", label: "Happy guests served" },
+  { icon: Award, prefix: "", value: 100, suffix: "%", label: "Pure vegetarian, always" },
 ];
 
 const tags = ["Women-Owned", "Pure Vegetarian", "LGBTQ+ Friendly", "Family-Friendly", "Wheelchair Accessible"];
 
 export default function AboutPage() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 75%", "end 60%"],
+  });
+  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
     <>
       {/* Hero */}
@@ -127,12 +137,28 @@ export default function AboutPage() {
 
       {/* Stats */}
       <section className="py-20 px-6" style={{ background: "var(--maroon)" }}>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-center" style={{ perspective: 1200 }}>
           {stats.map((s, i) => (
             <AnimatedSection key={s.label} delay={i * 0.12}>
-              <s.icon size={34} className="mx-auto mb-3" style={{ color: "var(--brass)" }} />
-              <p className="font-display text-5xl mb-2" style={{ color: "var(--cream)" }}>{s.value}</p>
-              <p className="text-sm font-medium" style={{ color: "rgba(248,241,227,0.7)" }}>{s.label}</p>
+              <TiltCard intensity={8} className="h-full">
+                <div
+                  className="h-full py-9 px-6 rounded-3xl"
+                  style={{ background: "rgba(248,241,227,0.06)", border: "1px solid rgba(242,216,154,0.18)", boxShadow: "0 24px 50px -30px rgba(0,0,0,0.6)" }}
+                >
+                  <motion.div
+                    className="w-14 h-14 mx-auto mb-4 rounded-2xl grid place-items-center"
+                    style={{ background: "rgba(224,168,46,0.14)", border: "1px solid rgba(224,168,46,0.3)" }}
+                    whileHover={{ rotate: -8, scale: 1.08 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 14 }}
+                  >
+                    <s.icon size={26} style={{ color: "var(--brass)" }} />
+                  </motion.div>
+                  <p className="font-display text-5xl mb-2 tilt-pop" style={{ color: "var(--cream)" }}>
+                    <CountUp prefix={s.prefix} value={s.value} suffix={s.suffix} />
+                  </p>
+                  <p className="text-sm font-medium" style={{ color: "rgba(248,241,227,0.7)" }}>{s.label}</p>
+                </div>
+              </TiltCard>
             </AnimatedSection>
           ))}
         </div>
@@ -146,19 +172,29 @@ export default function AboutPage() {
             <h2 className="section-heading font-display" style={{ color: "var(--cream)" }}>A kitchen with a story</h2>
           </AnimatedSection>
 
-          <div className="relative">
-            <div className="absolute left-6 top-0 bottom-0 w-px" style={{ background: "rgba(224,168,46,0.4)" }} />
+          <div className="relative" ref={timelineRef} style={{ perspective: 1000 }}>
+            {/* faint rail + brass line that draws in as you scroll the section */}
+            <div className="absolute left-6 top-0 bottom-0 w-px" style={{ background: "rgba(224,168,46,0.14)" }} />
+            <motion.div
+              className="absolute left-6 top-0 bottom-0 w-px origin-top"
+              style={{ background: "linear-gradient(180deg,#f2d89a,#e0a82e)", scaleY: lineScale, boxShadow: "0 0 12px rgba(224,168,46,0.5)" }}
+            />
             <div className="flex flex-col gap-10">
               {milestones.map((m, i) => (
                 <AnimatedSection key={m.year} delay={i * 0.1} direction="left">
                   <div className="flex gap-6">
-                    <div className="relative shrink-0">
-                      <div
+                    <div className="relative shrink-0" style={{ perspective: 600 }}>
+                      <motion.div
                         className="w-12 h-12 rounded-full grid place-items-center text-sm font-bold relative z-10"
                         style={{ background: "linear-gradient(180deg,#f2d89a,#e0a82e)", color: "#2a1304" }}
+                        initial={{ scale: 0, rotateY: -90 }}
+                        whileInView={{ scale: 1, rotateY: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ delay: 0.15 + i * 0.1, type: "spring", stiffness: 260, damping: 16 }}
+                        whileHover={{ scale: 1.12, boxShadow: "0 0 22px rgba(224,168,46,0.7)" }}
                       >
                         {i + 1}
-                      </div>
+                      </motion.div>
                     </div>
                     <div className="pb-2">
                       <p className="eyebrow mb-1" style={{ fontSize: "0.65rem" }}>{m.year}</p>
